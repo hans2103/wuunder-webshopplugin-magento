@@ -1,12 +1,4 @@
 <?php
-/**
- * Created by PHPro
- *
- * @package      DPD
- * @subpackage   Shipping
- * @category     Checkout
- * @author       PHPro (info@phpro.be)
- */
 /*
  * Link to open the parcelshop selection.
  */
@@ -16,7 +8,7 @@
     <script type="text/javascript">
         var dpdconfig = <?php echo $this->getConfig() ?>;
         <?php if(Mage::helper('wuunderconnector')->getIsOnestepCheckout()): ?>
-        window.dpdShipping = new DPD.Shipping('.onestepcheckout-shipping-method', dpdconfig);
+        window.dpdShipping = new DPD.Shipping('#checkout-shipping-method-load', dpdconfig);
         <?php else: ?>
         window.dpdShipping = new DPD.Shipping('checkout-shipping-method-load', dpdconfig);
         <?php endif; ?>

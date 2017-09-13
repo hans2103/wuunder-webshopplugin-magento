@@ -6,8 +6,9 @@ DPD.Shipping.addMethods({
             this.container = innerDoc.getElementById('parcelshop');
         }
         else {
-            this.container = $$(container)[0];
+            this.container = $(container);
         }
+        console.log($(container));
         this.config = config;
         this.showParcelsLinkClick = this.displayParcelsInline.bind(this);
         this.saveParcelShopClick = this.saveParcelShop.bind(this);

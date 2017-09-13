@@ -397,6 +397,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </active>
+                        <sort_order translate="label">
+                            <label>Sort order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
                         <title translate="label">
                             <label>Title</label>
                             <frontend_type>text</frontend_type>
@@ -463,15 +471,23 @@
                             <label>Enabled</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
                         <name translate="label">
                             <label>Shipping method name</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>2</sort_order>
+                            <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -480,7 +496,7 @@
                         <sort_order translate="label">
                             <label>Sort order</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>3</sort_order>
+                            <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -490,7 +506,7 @@
                             <label>Default selected</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>4</sort_order>
+                            <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -500,7 +516,7 @@
                             <label>Rate type</label>
                             <frontend_type>select</frontend_type>
                             <source_model>wuunderconnector/system_config_source_ratetypes</source_model>
-                            <sort_order>5</sort_order>
+                            <sort_order>60</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -509,7 +525,7 @@
                         <flatrateprice translate="label">
                             <label>Flat rate price</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>6</sort_order>
+                            <sort_order>70</sort_order>
                             <depends>
                                 <ratetype>0</ratetype>
                             </depends>
@@ -522,7 +538,7 @@
                             <label>Table rates condition</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_tablerate</source_model>
-                            <sort_order>7</sort_order>
+                            <sort_order>80</sort_order>
                             <depends>
                                 <ratetype>1</ratetype>
                             </depends>
@@ -534,7 +550,7 @@
                             <label>Export table rates file</label>
                             <frontend_type>button</frontend_type>
                             <frontend_model>wuunderconnector/adminhtml_system_config_form_dpd_dpdparcelshopsexport</frontend_model>
-                            <sort_order>8</sort_order>
+                            <sort_order>90</sort_order>
                             <depends>
                                 <ratetype>1</ratetype>
                             </depends>
@@ -546,7 +562,7 @@
                         <import_parcelshops translate="label">
                             <label>Import table rates file</label>
                             <frontend_type>import</frontend_type>
-                            <sort_order>9</sort_order>
+                            <sort_order>100</sort_order>
                             <backend_model>wuunderconnector/adminhtml_dpd_system_config_backend_shipping_dpdparcelshops_tablerate</backend_model>
                             <depends>
                                 <ratetype>1</ratetype>
@@ -559,7 +575,7 @@
                         <sallowspecific translate="label">
                             <label>Ship to countries</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>10</sort_order>
+                            <sort_order>110</sort_order>
                             <frontend_class>shipping-applicable-country</frontend_class>
                             <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
                             <show_in_default>1</show_in_default>
@@ -570,7 +586,7 @@
                         <specificcountry translate="label">
                             <label>Allowed countries</label>
                             <frontend_type>multiselect</frontend_type>
-                            <sort_order>11</sort_order>
+                            <sort_order>120</sort_order>
                             <source_model>adminhtml/system_config_source_country</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -582,7 +598,7 @@
                         <google_maps_api translate="label">
                             <label>Google Maps API</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>12</sort_order>
+                            <sort_order>130</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -591,7 +607,7 @@
                         <google_maps_width translate="label">
                             <label>Map width</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>13</sort_order>
+                            <sort_order>140</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -600,7 +616,7 @@
                         <google_maps_height translate="label">
                             <label>Map height</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>14</sort_order>
+                            <sort_order>150</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -609,7 +625,7 @@
                         <google_maps_maxpointers translate="label">
                             <label>Map - max num of shops</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>15</sort_order>
+                            <sort_order>160</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -620,7 +636,7 @@
                             <frontend_type>select</frontend_type>
                             <frontend_type>select</frontend_type>
                             <source_model>wuunderconnector/system_config_source_display</source_model>
-                            <sort_order>16</sort_order>
+                            <sort_order>170</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -630,7 +646,7 @@
                             <label>Map list</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>17</sort_order>
+                            <sort_order>180</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -640,7 +656,7 @@
                             <label>Custom ParcelShops - CSV</label>
                             <frontend_type>import</frontend_type>
                             <backend_model>wuunderconnector/adminhtml_dpd_system_config_backend_shipping_specialparcelshops</backend_model>
-                            <sort_order>18</sort_order>
+                            <sort_order>190</sort_order>
                             <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -650,7 +666,7 @@
                             <label></label>
                             <frontend_type>button</frontend_type>
                             <frontend_model>wuunderconnector/adminhtml_dpd_system_config_form_availability</frontend_model>
-                            <sort_order>19</sort_order>
+                            <sort_order>200</sort_order>
                             <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -661,7 +677,7 @@
                             <backend_model>adminhtml/system_config_backend_image</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">dpd</upload_dir>
                             <base_url type="media" scope_info="1">dpd</base_url>
-                            <sort_order>20</sort_order>
+                            <sort_order>210</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -673,7 +689,7 @@
                             <backend_model>adminhtml/system_config_backend_image</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">dpd</upload_dir>
                             <base_url type="media" scope_info="1">dpd</base_url>
-                            <sort_order>21</sort_order>
+                            <sort_order>220</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>Enabled
@@ -683,7 +699,7 @@
                             <label>Free shipping for custom parcel shops</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>22</sort_order>
+                            <sort_order>230</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>

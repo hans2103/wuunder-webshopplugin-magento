@@ -676,7 +676,7 @@ class Wuunder_WuunderConnector_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getIsOnestepCheckout()
     {
-        if (strpos(Mage::helper("core/url")->getCurrentUrl(), 'onestepcheckout') !== false || strpos(Mage::app()->getRequest()->getHeader('referer'), 'onestepcheckout') !== false) {
+        if (strpos(Mage::helper("core/url")->getCurrentUrl(), 'onestepcheckout') !== false || strpos(Mage::app()->getRequest()->getHeader('referer'), 'onestepcheckout') !== false || strpos(Mage::helper("core/url")->getCurrentUrl(), 'onestep') !== false || strpos(Mage::app()->getRequest()->getHeader('referer'), 'onestep') !== false) {
             return true;
         }
         return false;

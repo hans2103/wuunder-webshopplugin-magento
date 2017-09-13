@@ -53,7 +53,7 @@ $this->getShopsHtml();
 
         window.dpdconfig = <?php echo $this->getConfig() ?>;
         <?php if(Mage::helper('wuunderconnector/data/dpd')->getIsOnestepCheckout()): ?>
-        window.dpdShipping = new DPD.Shipping('.onestepcheckout-shipping-method', window.dpdconfig);
+        window.dpdShipping = new DPD.Shipping('#checkout-shipping-method-load', window.dpdconfig);
         <?php else: ?>
         window.dpdShipping = new DPD.Shipping('checkout-shipping-method-load', window.dpdconfig);
         <?php endif; ?>

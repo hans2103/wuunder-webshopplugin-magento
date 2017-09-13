@@ -56,7 +56,7 @@ $html = $this->getShopsHtml();
         <?php if($this->getIsAjax() || Mage::getStoreConfig('carriers/wuunderdpd/google_maps_display')): ?>
         window.dpdShipping = new DPD.Shipping('DPD_window_content', window.dpdconfig);
         <?php elseif(Mage::helper('wuunderconnector')->getIsOnestepCheckout()): ?>
-        window.dpdShipping = new DPD.Shipping('.onestepcheckout-shipping-method', window.dpdconfig);
+        window.dpdShipping = new DPD.Shipping('#checkout-shipping-method-load', window.dpdconfig);
         <?php else: ?>
         window.dpdShipping = new DPD.Shipping('checkout-shipping-method-load', window.dpdconfig);
         <?php endif; ?>

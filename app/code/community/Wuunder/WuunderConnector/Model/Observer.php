@@ -7,13 +7,18 @@ class Wuunder_WuunderConnector_Model_Observer extends Varien_Event_Observer
     {
         $collection = $observer->getOrderGridCollection();
         $select = $collection->getSelect();
-        $select->joinLeft(
-            array(
-                'wuunder' => $collection->getTable('wuunderconnector/shipments')
-            ),
-            'wuunder.order_id = main_table.entity_id',
-            array('label_id', 'label_url', 'label_tt_url', 'booking_url')
-        );
+        try {
+            $select->joinLeft(
+                array(
+                    'wuunder' => $collection->getTable('wuunderconnector/shipments')
+                ),
+                'wuunder.order_id = main_table.entity_id',
+                array('label_id', 'label_url', 'label_tt_url', 'booking_url')
+            );
+        } catch (Exception $e) {
+            Mage::helper('wuunderconnector')->log("Something went wrong with joining wuunder table:");
+            Mage::helper('wuunderconnector')->log($e->getMessage());
+        }
 
     }
 
@@ -27,19 +32,19 @@ class Wuunder_WuunderConnector_Model_Observer extends Varien_Event_Observer
         }
     }
 
+    /**
+     * Adds shipping and print button to order detail view
+     * @param $observer
+     */
     public function adminhtmlWidgetContainerHtmlBefore($observer)
     {
         $block = $observer->getBlock();
-
+        $enabled_shipping_methods = explode(",", Mage::getStoreConfig('wuunderconnector/connect/wuunder_enabled_shipping_methods'));
         if ($block instanceof Mage_Adminhtml_Block_Sales_Order_View) {
             $order = Mage::getModel('sales/order')->load($block->getOrderId());
             $shipping_method = $order->getShippingMethod();
-            if (in_array($shipping_method, explode(",", Mage::getStoreConfig('wuunderconnector/connect/wuunder_enabled_shipping_methods'))) ||
-                in_array("wuunder_default_all_selected", explode(",", Mage::getStoreConfig('wuunderconnector/connect/wuunder_enabled_shipping_methods')))
-            ) {
-                if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/ship') && $order->canShip()
-                    && !$order->getForcedDoShipmentWithInvoice()
-                ) {
+            if (in_array($shipping_method, $enabled_shipping_methods) || in_array("wuunder_default_all_selected", $enabled_shipping_methods)) {
+                if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/ship') && $order->canShip() && !$order->getForcedDoShipmentWithInvoice()) {
                     $orderId = $block->getOrderId();
                     $block->removeButton('order_ship');
                     $shipmentInfo = Mage::helper('wuunderconnector')->getShipmentInfo($orderId);
@@ -72,9 +77,7 @@ class Wuunder_WuunderConnector_Model_Observer extends Varien_Event_Observer
         } else if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Shipment_View) {
             $shipment = Mage::registry('current_shipment');
             $shipping_method = Mage::getModel('sales/order')->load($shipment->getOrderId())->getShippingMethod();
-            if (in_array($shipping_method, explode(",", Mage::getStoreConfig('wuunderconnector/connect/wuunder_enabled_shipping_methods'))) ||
-                in_array("wuunder_default_all_selected", explode(",", Mage::getStoreConfig('wuunderconnector/connect/wuunder_enabled_shipping_methods')))
-            ) {
+            if (in_array($shipping_method, $enabled_shipping_methods) || in_array("wuunder_default_all_selected", $enabled_shipping_methods)) {
                 $shipmentId = $block->getRequest()->getParam('shipment_id');
                 if (empty($shipmentId)) {
                     return;
@@ -125,7 +128,7 @@ class Wuunder_WuunderConnector_Model_Observer extends Varien_Event_Observer
             $address->unsetAddressId()
                 ->unsetTelephone()
                 ->setSaveInAddressBook(0)
-                ->setCompany('Via DPD ParcelShop: '.$quote->getDpdCompany())
+                ->setCompany('Via DPD ParcelShop: ' . $quote->getDpdCompany())
                 ->setStreet($quote->getDpdStreet())
                 ->setCity($quote->getDpdCity())
                 ->setPostcode($quote->getDpdZipcode())
@@ -162,7 +165,7 @@ class Wuunder_WuunderConnector_Model_Observer extends Varien_Event_Observer
                 $address->unsetAddressId()
                     ->unsetTelephone()
                     ->setSaveInAddressBook(0)
-                    ->setCompany('DPD ParcelShop: '.$quote->getDpdCompany())
+                    ->setCompany('DPD ParcelShop: ' . $quote->getDpdCompany())
                     ->setStreet($quote->getDpdStreet())
                     ->setCity($quote->getDpdCity())
                     ->setPostcode($quote->getDpdZipcode())
